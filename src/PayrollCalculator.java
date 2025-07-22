@@ -80,20 +80,56 @@ hasHealthInsurance) {
     }
     
        // Method to process multiple employees and find statistics 
-    public static void processPayroll(String[] employeeTypes, double[] hours, 
-    
-    
-double[] rates, String[] names) { 
-    for(int i=0;i==employeeTypes.length;i++){
-        
+    public static void processPayroll(String[] employeeTypes, double[] hours, double[] rates, String[] names) { 
+        double []pay={};
+        double countOfOvertime=0;
+    for(int i=0;i<employeeTypes.length;i++){
+        pay[i]=hours[i]*rates[i];
+        if (hours[i]>40) countOfOvertime+=1;
     }
-        // Calculate pay for each employee 
-        // Find: highest paid employee, lowest paid employee, average pay 
-        // Count how many employees worked overtime (>40 hours) 
+
+    //highest paid
+    //minimum paid 
+    //average paid
+          double max = pay[0];
+          double min=pay[0];
+          double total=0;
+      for (int i = 1; i < pay.length; i++) {
+         if (pay[i] > max) max = pay[i];
+         if (pay[i] < min) min = pay[i];
+         total+=pay[i];
+      }
+      double average=total/pay.length;
+
         // Display results in a formatted table 
-        // Handle arrays of different lengths gracefully 
+
+        System.out.println("Name"+"  "+"Type"+"   "+"Payment"+"   "+"OverTime"+"   "+"Hours");
+        for(int x=0;x<employeeTypes.length;x++){
+            System.out.println(names[x]+"  "+employeeTypes[x]+"   "+pay[x]+"   "+rates[x]+"   "+hours[x]);
+        }
+        System.out.println();
+        System.out.println("Maximum Paid : "+max);
+        System.out.println("Minimum Paid : "+min);
+        System.out.println("Average Paid : "+average);
+        System.out.println("Number of employee workded over time : "+countOfOvertime);
+
     } 
-     
-    
+
+        public static void main(String[] args) { 
+        // Test data: 
+        String[] types = {"FULL_TIME", "PART_TIME", "CONTRACTOR", "INTERN", 
+"FULL_TIME"}; 
+        double[] hours = {45, 20, 35, 15, 50}; 
+        double[] rates = {25.0, 18.0, 40.0, 12.0, 30.0}; 
+        String[] names = {"Alice", "Bob", "Charlie", "Diana", "Eve"}; 
+
+        PayrollCalculator.calculateWeeklyPay(types[0], hours[0], rates[0]); 
+        PayrollCalculator.calculateTaxDeduction(1000, true);
+        PayrollCalculator.processPayroll(types, hours, rates, names);
+
+        // Test individual calculations first
+        // Then process the entire payroll
+        // Show all results clearly
+        }
 
 }
