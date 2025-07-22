@@ -35,4 +35,50 @@ hoursWorked, double hourlyRate) {
     } 
 
 
+// Method to calculate tax deduction based on pay brackets 
+    public static double calculateTaxDeduction(double grossPay, boolean 
+hasHealthInsurance) { 
+    double taxAmount=0;
+    double total=0;
+    if(hasHealthInsurance){
+        if(grossPay>0 && grossPay <=500){
+            taxAmount=(0.1*grossPay)-50;
+            total=grossPay+taxAmount;
+        }
+        else if(grossPay>501 && grossPay <=1000){
+            taxAmount=(0.15*grossPay)-50;
+            total=grossPay+taxAmount;
+        }
+                else if(grossPay>1001 && grossPay <=2000){
+            taxAmount=(0.2*grossPay)-50;
+            total=grossPay+taxAmount;
+        }
+                else if(grossPay >2000){
+            taxAmount=(0.25*grossPay)-50;
+            total=grossPay+taxAmount;
+        }
+    }else{
+        if(grossPay>0 && grossPay <=500){
+            taxAmount=0.1*grossPay;
+            total=grossPay+taxAmount;
+        }
+        else if(grossPay>501 && grossPay <=1000){
+            taxAmount=0.15*grossPay;
+            total=grossPay+taxAmount;
+        }
+                else if(grossPay>1001 && grossPay <=2000){
+            taxAmount=0.2*grossPay;
+            total=grossPay+taxAmount;
+        }
+                else if(grossPay >2000){
+            taxAmount=0.25*grossPay;
+            total=grossPay+taxAmount;
+        }
+
+    }
+        return total; 
+    }
+    
+    
+
 }
