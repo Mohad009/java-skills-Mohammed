@@ -85,8 +85,8 @@ hasHealthInsurance) {
     
        // Method to process multiple employees and find statistics 
     public static void processPayroll(String[] employeeTypes, double[] hours, double[] rates, String[] names) { 
-        double []pay={};
-        double countOfOvertime=0;
+        double []pay=new double[employeeTypes.length];
+        int countOfOvertime=0;
     for(int i=0;i<employeeTypes.length;i++){
         pay[i]=hours[i]*rates[i];
         if (hours[i]>40) countOfOvertime+=1;
@@ -107,7 +107,7 @@ hasHealthInsurance) {
 
         // Display results in a formatted table 
 
-        System.out.println("Name"+"  "+"Type"+"   "+"Payment"+"   "+"OverTime"+"   "+"Hours");
+        System.out.println("Name"+"  "+"Type"+"   "+"Payment"+"   "+"rates"+"   "+"Hours");
         for(int x=0;x<employeeTypes.length;x++){
             System.out.println(names[x]+"  "+employeeTypes[x]+"   "+pay[x]+"   "+rates[x]+"   "+hours[x]);
         }
@@ -127,9 +127,13 @@ hasHealthInsurance) {
         String[] names = {"Alice", "Bob", "Charlie", "Diana", "Eve"}; 
         
         double weekPayment=PayrollCalculator.calculateWeeklyPay(types[0], hours[0], rates[0]); 
+        double taxCaluclation=PayrollCalculator.calculateTaxDeduction(1000, true);
+        System.out.print("Weekly Payment: ");
         System.out.println(weekPayment);
-        // PayrollCalculator.calculateTaxDeduction(1000, true);
-        // PayrollCalculator.processPayroll(types, hours, rates, names);
+
+        System.out.print("Tax: ");
+        System.out.println(taxCaluclation);
+        PayrollCalculator.processPayroll(types, hours, rates, names);
 
         // Test individual calculations first
         // Then process the entire payroll
