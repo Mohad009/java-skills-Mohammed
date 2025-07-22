@@ -5,30 +5,34 @@ hoursWorked, double hourlyRate) {
     double weeklyPay=0;
     double discount;
         switch (employeeType) {
-            case "Full_Time":
+            case "FULL_TIME":
             // check for negative values
-            if(hoursWorked<0 && hourlyRate< 0){
+            if(hoursWorked>=0 && hourlyRate>=0){
                 
-                if (hoursWorked==40)weeklyPay=hoursWorked*hourlyRate;
-                else if (hoursWorked>40) weeklyPay=hoursWorked*hourlyRate;
-            }
+                if (hoursWorked<=40)weeklyPay=hoursWorked*hourlyRate;
+                else weeklyPay=(40*hourlyRate)+(hoursWorked-40)* hourlyRate*1.5;
+            }else System.out.println("negative values is not accepted");
             break;
-            case "Part_Time":
-            if(hoursWorked<0 && hourlyRate< 0){
-                weeklyPay=hoursWorked*hourlyRate;}
+            case "PART_TIME":
+            if(hoursWorked>=0 && hourlyRate>= 0){
+                if(hoursWorked<=25){
+
+                    weeklyPay=hoursWorked*hourlyRate;}else System.out.println("negative values is not accepted");
+                }
                 break;
             case "CONTRACTOR":
-            if(hoursWorked<0 && hourlyRate< 0){
-                weeklyPay=hourlyRate;}
+            if(hoursWorked>=0 && hourlyRate>= 0){
+                weeklyPay=hourlyRate*hoursWorked;}else System.out.println("negative values is not accepted");
                 break;
             case "INTERN":
-            if(hoursWorked<0 && hourlyRate< 0){
+            if(hoursWorked>=0 && hourlyRate>= 0){
                 discount=0.2*hourlyRate;
                 weeklyPay=(hourlyRate-discount)*hoursWorked;
-            }
+            }else System.out.println("negative values is not accepted");
                 break;
             default:
             System.out.println("Enter valid employee type");
+            System.out.println(employeeType);
                 break;
         }
    return weeklyPay;
@@ -117,15 +121,15 @@ hasHealthInsurance) {
 
         public static void main(String[] args) { 
         // Test data: 
-        String[] types = {"FULL_TIME", "PART_TIME", "CONTRACTOR", "INTERN", 
-"FULL_TIME"}; 
+        String[] types = {"FULL_TIME", "PART_TIME", "CONTRACTOR", "INTERN", }; 
         double[] hours = {45, 20, 35, 15, 50}; 
         double[] rates = {25.0, 18.0, 40.0, 12.0, 30.0}; 
         String[] names = {"Alice", "Bob", "Charlie", "Diana", "Eve"}; 
-
-        PayrollCalculator.calculateWeeklyPay(types[0], hours[0], rates[0]); 
-        PayrollCalculator.calculateTaxDeduction(1000, true);
-        PayrollCalculator.processPayroll(types, hours, rates, names);
+        
+        double weekPayment=PayrollCalculator.calculateWeeklyPay(types[0], hours[0], rates[0]); 
+        System.out.println(weekPayment);
+        // PayrollCalculator.calculateTaxDeduction(1000, true);
+        // PayrollCalculator.processPayroll(types, hours, rates, names);
 
         // Test individual calculations first
         // Then process the entire payroll
