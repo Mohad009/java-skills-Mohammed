@@ -79,6 +79,21 @@ hasHealthInsurance) {
         return total; 
     }
     
+       // Method to process multiple employees and find statistics 
+    public static void processPayroll(String[] employeeTypes, double[] hours, 
+    
+    
+double[] rates, String[] names) { 
+    for(int i=0;i==employeeTypes.length;i++){
+        
+    }
+        // Calculate pay for each employee 
+        // Find: highest paid employee, lowest paid employee, average pay 
+        // Count how many employees worked overtime (>40 hours) 
+        // Display results in a formatted table 
+        // Handle arrays of different lengths gracefully 
+    } 
+     
     
 
 }
